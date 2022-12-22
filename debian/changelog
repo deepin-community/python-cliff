@@ -1,0 +1,310 @@
+python-cliff (3.9.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 29 Sep 2021 12:26:30 +0200
+
+python-cliff (3.9.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Added python3-autopage as (build-)depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 25 Aug 2021 14:15:20 +0200
+
+python-cliff (3.8.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 24 Aug 2021 16:43:39 +0200
+
+python-cliff (3.7.0-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 16 Aug 2021 08:34:57 +0200
+
+python-cliff (3.7.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 08 Mar 2021 14:32:51 +0100
+
+python-cliff (3.4.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+  * Add a debian/salsa-ci.yml and fix watch file.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 14 Oct 2020 09:51:12 +0200
+
+python-cliff (3.4.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Removed python3-mock from build-depends.
+  * Cleans better.
+  * Black list 10 unit tests which are failing ONLY if using git-buildpackage
+    (sbuild alone works...), because cliff cannot find terminal width correctly
+    when building in the environment of git-buildpackage.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 07 Sep 2020 16:26:58 +0200
+
+python-cliff (3.1.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+  * Some more <!nocheck> in d/control.
+  * Add Build-Profiles: <!nodoc> for the -doc package.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 06 Apr 2020 17:55:17 +0200
+
+python-cliff (3.1.0-1) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat.
+  * Use 'python3 -m sphinx' instead of sphinx-build for building docs.
+  * Bump Standards-Version to 4.4.1.
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Removed python3-unicodecsv from runtime depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 06 Apr 2020 17:46:37 +0200
+
+python-cliff (2.14.1-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 17 Jul 2019 05:08:04 +0200
+
+python-cliff (2.14.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Removed Python 2 support.
+  * Run tests using PYTHONPATH to where the python module is installed.
+  * Standards-Version: 4.3.0 (no change).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 22 Mar 2019 13:45:46 +0100
+
+python-cliff (2.13.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Use team+openstack@tracker.debian.org as maintainer
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Apply Ubuntu patch (Closes: #898732):
+    - d/control, d/compat: Set debhelper>=10.
+    - d/control: Enable autopkgtest-pkg-python tests.
+    - d/control: Drop (Build-)Depends on python3-unicodecsv as its only
+    needed for Python 2 (LP: #1736717).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 11 Sep 2018 15:13:50 +0200
+
+python-cliff (2.11.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Standards-Version is now 4.1.3.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 03 Mar 2018 17:52:29 +0100
+
+python-cliff (2.8.0-3) unstable; urgency=medium
+
+  * Uploading to unstable.
+  * Fixed watch file.
+  * Standards-Version is now 4.1.1.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 01 Nov 2017 22:36:43 +0000
+
+python-cliff (2.8.0-2) experimental; urgency=medium
+
+  * Add missing (build-)dep: python{3,}-docutils (Closes: #877129).
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 01 Oct 2017 18:57:32 +0000
+
+python-cliff (2.8.0-1) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/rules: Changed UPSTREAM_GIT protocol to https
+
+  [ Daniel Baumann ]
+  * Updating vcs fields.
+  * Updating copyright format url.
+  * Updating maintainer field.
+  * Running wrap-and-sort -bast.
+  * Updating standards version to 4.0.0.
+  * Removing gbp.conf, not used anymore or should be specified in the
+    developers dotfiles.
+  * Updating standards version to 4.0.1.
+  * Updating standards version to 4.1.0.
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Using pkgos-dh_auto_{test,install}.
+  * Removed patch: removes-argparse-from-requirements.txt.
+  * Removed patch: fix python 3.5 unit tests.
+  * Removed dh_installchangelogs overrides.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 24 Sep 2017 19:06:35 +0200
+
+python-cliff (1.15.0-4) unstable; urgency=medium
+
+  * Added missing python{3,}-setuptools build-depends (Closes: #820688).
+  * Standards-Version: 3.9.8 (no change).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 11 Apr 2016 22:23:44 +0000
+
+python-cliff (1.15.0-3) unstable; urgency=medium
+
+  * Removed argparse from requirements.txt (Closes: #810126).
+  * Added patch to fix Python 3.5 unit tests (in fact, removing some broken
+    tests).
+  * Running unit tests for all available versions of Python.
+  * VCS URLs using HTTPS.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 06 Feb 2016 10:30:41 +0000
+
+python-cliff (1.15.0-2) unstable; urgency=medium
+
+  * Added missing build-depends on python{3,}-yaml.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 20 Nov 2015 16:13:06 +0100
+
+python-cliff (1.15.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable.
+  * Moved the package to PKG OpenStack as I lost write access to the DPMT.
+  * Added build-depends openstack-pkg-tools.
+  * Added export OSLO_PACKAGE_VERSION.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 15 Oct 2015 23:12:13 +0000
+
+python-cliff (1.14.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Removed skip-test.patch now useless.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 02 Sep 2015 19:31:14 +0000
+
+python-cliff (1.13.0-1) experimental; urgency=medium
+
+  [ Thomas Goirand ]
+  * Updated debian/copyright.
+
+  [ Corey Bryant ]
+  * New upstream release:
+    - d/control: Align (Build-)Depends with upstream.
+    - d/p/skip-tests.patch: Skip failing test.
+
+  [ James Page ]
+  * Update watch file to use Debian pypi redirector.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 14 Jul 2015 21:18:51 +0000
+
+python-cliff (1.10.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed calls of nose.
+  * Also testing with nose and python3.
+  * Standards-Version is now 3.9.6.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 15 Apr 2015 14:57:33 +0000
+
+python-cliff (1.7.0-2) unstable; urgency=medium
+
+  * debian/control: add versions python{,3}-six and python{,3}-
+    prettytable Depends (Closes: #752741)
+
+ -- Jan Dittberner <jandd@debian.org>  Sun, 28 Sep 2014 19:42:33 +0200
+
+python-cliff (1.7.0-1) unstable; urgency=medium
+
+  * New upstream version
+
+ -- Jan Dittberner <jandd@debian.org>  Sun, 28 Sep 2014 18:06:55 +0200
+
+python-cliff (1.6.1-1) unstable; urgency=medium
+
+  * New upstream version
+  * drop debian/patches/dont-install-distribute-for-tests.patch,
+    upstream does not specify a dependency for distribute anymore
+
+ -- Jan Dittberner <jandd@debian.org>  Mon, 16 Jun 2014 20:32:49 +0200
+
+python-cliff (1.5.2-1) unstable; urgency=low
+
+  [ Thomas Goirand ]
+  * (Build-)Depends on python-cmd2 at least 0.6.7. (Closes: #739717)
+
+  [ Jan Dittberner ]
+  * New upstream version
+  * debian/control:
+    - add python-coverage, pep8, python-pbr, python-six, python-stevedore,
+      python3-coverage, python3-pep8, python3-pbr, python3-six,
+      python3-stevedore to Build-Depends-Indep
+    - bump Standards-Version to 3.9.5 (no changes)
+  * debian/rules: clean pbr-*.egg that may get created when building on
+    systems without python-pbr installed
+  * add debian/patches/dont-install-distribute-for-tests.patch to avoid
+    installation of distribute from PyPI
+
+ -- Jan Dittberner <jandd@debian.org>  Sat, 22 Feb 2014 15:22:53 +0100
+
+python-cliff (1.4.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added myself as uploader.
+  * Ran wrap-and-sort.
+  * python-pyparsing build-depends is now >= 2.0.1.
+  * Now build-depends on python-all (>= 2.6.6-3~) and python3, added python3
+    support and the corresponding build-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 05 Oct 2013 08:20:05 +0000
+
+python-cliff (1.4-1) unstable; urgency=low
+
+  * Team upload.
+  * New upstream release.
+  * Bumped to debhelper and compat 9.
+  * Standard-Version bumped to 3.9.4.
+  * Removed "-1" from python-pyparsing build-depends version.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 26 Jun 2013 06:24:43 +0000
+
+python-cliff (1.3.3-4) unstable; urgency=low
+
+  * Added (>= 1.5.7+dfsg1-1) in the pyparsing build-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 12 Jun 2013 15:44:31 +0000
+
+python-cliff (1.3.3-3) unstable; urgency=low
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+  [ Thomas Goirand ]
+  * Team upload.
+  * New upstream version.
+  * Added rm -rf cliff.egg-info in the clean target.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 13 May 2013 14:10:27 +0000
+
+python-cliff (1.3-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Jan Dittberner <jandd@debian.org>  Mon, 22 Oct 2012 10:45:46 +0200
+
+python-cliff (1.2.1-1) unstable; urgency=low
+
+  * Initial release. (Closes: #670837: ITP: python-cliff -- command line
+    interface formulation framework)
+
+ -- Jan Dittberner <jandd@debian.org>  Tue, 09 Oct 2012 20:47:34 +0200

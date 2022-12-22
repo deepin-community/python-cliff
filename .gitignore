@@ -1,0 +1,40 @@
+*.py[co]
+
+# Packages
+*.egg*
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+.venv
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+#Translations
+*.mo
+
+# pbr output
+AUTHORS
+ChangeLog
+
+# reno output
+RELEASENOTES.rst
+releasenotes/notes/reno.cache
+
+# Editors
+*~
+.*.swp
+/.stestr/
+/.testrepository/
+/cover/
+.coverage.*

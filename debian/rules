@@ -1,0 +1,44 @@
+#!/usr/bin/make -f
+
+UPSTREAM_GIT := https://github.com/openstack/cliff.git
+include /usr/share/openstack-pkg-tools/pkgos.make
+
+
+%:
+	dh $@ --with python3,sphinxdoc --buildsystem=python_distutils
+
+override_dh_auto_clean:
+	rm -rf cliff.egg-info build AUTHOR ChangeLog
+	find . -type d -iname __pycache__ -exec rm -rf {} \; || true
+
+override_dh_auto_build:
+	echo "Do nothing..."
+
+override_dh_auto_install:
+	for i in $(PYTHON3S) ; do \
+		python$$i setup.py install -f --install-layout=deb --root=$(CURDIR)/debian/tmp ; \
+	done
+ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=$(CURDIR)/debian/tmp/usr/lib/python3/dist-packages pkgos-dh_auto_test --no-py2 'cliff\.tests\.(?!(.*test_formatters_table.TestTableFormatter.test.*|.*test_formatters_table.TestListFormatter.test_formattable_column.*|.*test_formatters_table.TestListFormatter.test_table_formatter_formattable_column.*|.*test_formatters_table.TestListFormatter.test_table_list_formatter.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_cli_param.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_cli_param_envvar_big.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_cli_param_envvar_tiny.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_cli_param_unlimited_tw.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_no_cli_param.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_no_cli_param_unlimited_tw.*))'
+endif
+
+override_dh_sphinxdoc:
+ifeq (,$(findstring nodoc, $(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=$(CURDIR) python3 -m sphinx -b html -a -c doc/source doc/source \
+	    $(CURDIR)/debian/python-cliff-doc/usr/share/doc/python-cliff-doc/html
+	dh_sphinxdoc -ppython-cliff-doc
+endif
+
+override_dh_installexamples:
+	dh_installexamples
+	find $(CURDIR)/debian/python-cliff-doc -iname '*.pyc' -delete
+	find $(CURDIR)/debian/python-cliff-doc -iname '__pycache__' -delete
+
+override_dh_python3:
+	dh_python3 -ppython3-cliff
+
+override_dh_compress:
+	dh_compress -i -X.rst -X.js -X.html -X.txt -X.py
+
+override_dh_auto_test:
+	echo "Do nothing..."
