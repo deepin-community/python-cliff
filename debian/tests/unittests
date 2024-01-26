@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+export OSLO_PACKAGE_VERSION=$(dpkg-parsechangelog -SVersion | sed -e 's/^[[:digit:]]*://' -e 's/[-].*//' -e 's/~git.*//' -e 's/~/.0/' -e 's/+dfsg1//' -e 's/+ds1//' | head -n 1)
+
+CWD=$(pwd)
+PYTHON3S=$(py3versions -vs)
+for i in ${PYTHON3S} ; do
+	python${i} setup.py install -f --install-layout=deb --root=`pwd`/debian/tmp
+	PYTHON=python${i} PYTHONPATH=`pwd`/debian/tmp/usr/lib/python3/dist-packages pkgos-dh_auto_test --no-py2 'cliff\.tests\.(?!(.*test_formatters_table.TestTableFormatter.test.*|.*test_formatters_table.TestListFormatter.test_formattable_column.*|.*test_formatters_table.TestListFormatter.test_table_formatter_formattable_column.*|.*test_formatters_table.TestListFormatter.test_table_list_formatter.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_cli_param.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_cli_param_envvar_big.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_cli_param_envvar_tiny.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_cli_param_unlimited_tw.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_no_cli_param.*|.*test_formatters_table.TestTerminalWidth.test_table_formatter_no_cli_param_unlimited_tw.*))'
+done
